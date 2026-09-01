@@ -24,7 +24,7 @@ menuButton?.addEventListener('click', () => {
   nav?.classList.contains('open') ? closeMenu() : openMenu();
 });
 menuClose?.addEventListener('click', () => closeMenu());
-nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => closeMenu(false)));
+nav?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => closeMenu()));
 
 document.addEventListener('keydown', (event) => {
   if (!nav?.classList.contains('open')) return;
