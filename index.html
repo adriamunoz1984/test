@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="fixes.css">
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -17,6 +18,7 @@
       <a class="wordmark" href="#top" aria-label="Nightshift Objects home">NIGHTSHIFT <span>OBJECTS</span></a>
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav"><span class="sr-only">Open menu</span><span aria-hidden="true">☰</span></button>
       <nav id="site-nav" aria-label="Primary navigation">
+        <button class="menu-close" type="button"><span class="sr-only">Close menu</span><span aria-hidden="true">×</span></button>
         <a href="#vibes">Shop</a><a href="#collection">Collections</a><a href="#custom">Custom Prints</a><a href="#about">About</a>
       </nav>
       <div class="utilities">
@@ -71,6 +73,11 @@
     </main>
 
     <footer><section class="signup" aria-labelledby="signup-title"><div><p class="eyebrow">STAY STRANGE</p><h2 id="signup-title">Join the misfit mailing list</h2><p>New releases and good bad ideas. <span class="placeholder">[Consent copy pending email provider]</span></p></div><form novalidate><label for="email">Email address</label><div class="email-row"><input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"><button class="button primary" type="submit">Sign me up</button></div><p class="form-message" aria-live="polite"></p><a href="#privacy">Privacy policy <span class="placeholder">[placeholder]</span></a></form></section><div class="footer-links"><a class="wordmark" href="#top">NIGHTSHIFT <span>OBJECTS</span></a><div><h3>Shop</h3><a href="#vibes">All objects</a><a href="#collection">Collections</a><a href="#custom">Custom prints</a></div><div><h3>Help</h3><a href="mailto:hello@example.com">Contact <span class="placeholder">[placeholder]</span></a><a href="#privacy">Policies</a><a href="#accessibility">Accessibility</a></div><div><h3>Social</h3><a href="#social">Instagram <span class="placeholder">[placeholder]</span></a><a href="#social">TikTok <span class="placeholder">[placeholder]</span></a></div></div><p class="copyright">© 2026 Nightshift Objects <span class="placeholder">[placeholder brand]</span></p></footer>
+    <dialog class="poc-dialog" aria-labelledby="poc-dialog-title">
+      <button class="dialog-close" type="button"><span class="sr-only">Close message</span><span aria-hidden="true">×</span></button>
+      <h2 id="poc-dialog-title">Proof-of-concept notice</h2>
+      <p class="poc-dialog-message"></p>
+    </dialog>
     <script src="script.js"></script>
   </body>
 </html>

@@ -1,0 +1,10 @@
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.menu-close { display: none; }
+.poc-dialog { max-width: 32rem; padding: 2rem; border: 2px solid var(--pink); background: var(--coal); color: var(--bone); }
+.poc-dialog::backdrop { background: #120d12cc; }
+.dialog-close { position: absolute; top: .5rem; right: .5rem; min-width: 44px; min-height: 44px; border: 0; background: transparent; color: var(--bone); font-size: 1.6rem; cursor: pointer; }
+.poc-dialog h2 { font-size: 2.4rem; margin-right: 2rem; }
+.poc-dialog-message { margin: 1rem 0 0; }
+@media (max-width: 760px) {
+  nav .menu-close { display: block; position: absolute; top: 14px; right: 14px; min-width: 44px; min-height: 44px; border: 1px solid var(--ash); background: transparent; color: var(--bone); font-size: 1.5rem; cursor: pointer; }
+}
