@@ -1,192 +1,143 @@
-# Homepage Design Specification — Goth / Rockabilly 3D-Print Storefront
+# Munoz Miniz Homepage — Phase 2 Design Specification
 
-## Status
-Design ready for Director review. This is a proof-of-concept specification only; it is not authorization to implement, publish, or deploy.
+## Status and scope
 
-## 1. Experience goal
+**Status:** Ready for Director review; implementation must wait for the Director's explicit approval and delegation.
 
-Create a high-contrast, shop-first homepage for a maker-led 3D-print storefront. It should feel like a neon-lit rockabilly garage crossed with a tasteful gothic parlor: playful, tactile, slightly dangerous, and legible enough to buy from quickly. The visual language must sell the objects—not turn the page into a novelty haunted-house theme.
+**Phase 2 objective:** Replace the prior fictional `Nightshift Objects` identity and fabricated storefront placeholders with the Munoz Miniz identity and only verified catalog content, while retaining the approved homepage structure, responsive behavior, and accessibility controls.
 
-Primary visitor actions:
+This document authorizes no deployment, publishing, merge, pricing change, or external communication.
 
-1. Browse by aesthetic/vibe.
-2. View new products.
-3. Discover a featured collection.
-4. Start a custom-print inquiry.
-5. Join the email list.
+## Evidence boundary
 
-## 2. Visual direction
+### Verified for use
 
-### Mood and composition
-
-- Dark ink background, warm bone-colored reading surfaces, and restrained hot-pink/red accents.
-- Use large editorial type for headlines, condensed display labels for shop signage, and a neutral sans-serif for all body copy and commerce UI.
-- Blend 1950s sign-painting cues (badges, starbursts, checkerboard details) with gothic motifs (arched frames, tiny bats, thorns, coffin-like product silhouettes). Keep decoration at section edges so it never obscures text or product photography.
-- Product imagery is the brightest element after CTAs. Use a consistent studio treatment with hard directional light, soft shadow, and an optional subtle colored rim light.
-- Avoid generic horror imagery, busy textures behind copy, and illegible script fonts.
-
-### Color tokens
-
-| Token | Value | Use |
+| Fact | Evidence | Design consequence |
 | --- | --- | --- |
-| `ink` | `#120D12` | Page background, dark cards, navigation |
-| `coal` | `#231B23` | Elevated dark surfaces |
-| `bone` | `#F4EBDD` | Primary light text/surfaces |
-| `ash` | `#B9AFB3` | Secondary text and dividers |
-| `cherry` | `#D72D45` | Primary CTA, price/emphasis, focus accents |
-| `hot-pink` | `#FF5B9A` | Small highlights and hover treatment |
-| `acid` | `#C9E84A` | Limited “new”/badge accent only |
-| `chrome` | `#D5D4D0` | Metallic linework and icon details |
+| Business name: **Munoz Miniz LLC** | Public business-record listing for Munoz Miniz LLC (queried 2026-09-01) | Use `Munoz Miniz` as the text wordmark and page/site name. Do not retain `Nightshift Objects`. |
+| Business scope: 3D-printed product retail and custom manufacturing | Same public listing | The homepage may describe the offering generically as 3D-printed products and present a custom-work inquiry route. |
 
-Use `bone` text on dark backgrounds and `ink` text on light surfaces. Do not use `hot-pink` or `cherry` for long-form text. Maintain WCAG AA contrast for normal text and interactive controls.
+### Not verified — do not invent or publish
 
-### Typography
+No repository asset, project document, or discoverable authoritative catalog supplied a current product feed, category taxonomy, individual item name, price, availability, material, processing time, shipping policy, social handle, email address, logo, or product photography. The previous names (for example, *Spike Heart Vessel*) and prices were POC inventions and must be removed.
 
-- **Display:** `Bebas Neue` or another licensed/open condensed grotesk; uppercase, tracked slightly (`0.02em–0.04em`). Used for page titles, category names, and compact labels only.
-- **Editorial accent:** `DM Serif Display` or `Cormorant Garamond`; used sparingly for a short hero phrase and collection title, never navigation or product data.
-- **UI/body:** `Inter` or `Work Sans`; 16 px desktop/mobile body base, 1.5–1.6 line height.
-- Headline scale: hero 56–72 px desktop / 40–48 px mobile; section titles 36–48 px desktop / 28–34 px mobile; card titles 18–22 px.
-- Never communicate important information through case, color, or a decorative face alone.
+The implementation must use a content adapter/data source supplied by the owner for all named products and commerce facts. If that source has not arrived when development begins, retain an intentionally non-commerce-ready preview state rather than manufacture catalog data.
 
-## 3. Global shell
+## 1. Brand direction
 
-### Header
+### Positioning and tone
 
-- Sticky header with a thin announcement bar above it: “Small-batch oddities, made to order.” Keep it dismissible only if a real implementation supports persistence; otherwise static.
-- Header includes wordmark/logo at left, primary navigation (`Shop`, `Collections`, `Custom Prints`, `About`) centered or adjacent, and search, account, and cart utilities at right.
-- Header background is opaque `ink` after scroll; at top it may be transparent over a dark hero only if every control remains high contrast.
-- Mobile: wordmark, search, cart, and an accessible menu trigger. Menu opens as a full-height dark panel with visible close control and focus trapped while open.
+Munoz Miniz is a maker-led 3D-print retail and custom-manufacturing brand. The visual voice should be crisp, compact, mechanical, and collector-friendly: a small-scale workshop / display-case character, rather than the previous goth/rockabilly fiction. It should feel precise and playful, with product forms doing the visual work.
 
-### Layout system
+Use direct, factual language. Prefer **made-to-order**, **3D-printed**, and **custom work** only where the eventual catalog or owner confirms that claim for the particular item. Avoid unverified claims about durability, origin, filament/material, limited runs, delivery dates, sustainability, fandom licensing, or compatibility.
 
-- Content max width: 1280 px; horizontal gutters: 24–40 px desktop, 16–20 px mobile.
-- Section spacing: 96–128 px desktop, 64–80 px tablet, 48–64 px mobile.
-- Use a 12-column desktop grid, 8-column tablet grid, and 4-column mobile grid. Product cards must retain equal media ratios in a row.
-- Reuse a modest 8 px spacing rhythm and 12–16 px corner radius; use pointed/arched decorative frames only as nonessential enhancements.
+### Visual system
 
-## 4. Homepage sections, in order
+- Keep the approved high-contrast shell and its generous product media space; replace gothic motifs, checkerboards, bats, skulls, thorn flourishes, and “dark side” language.
+- Base palette: near-black `#101214`, warm white `#F5F3EE`, graphite `#2B3035`, steel `#AAB2B9`, and one owner-approved brand accent. Until an official accent is supplied, use accessible cobalt `#2457D6` only for interactive emphasis, never as asserted brand color.
+- Product imagery is primary. Use clean studio imagery: neutral background, consistent scale, soft contact shadow, no text baked into images, and no AI-generated representation of a catalog item.
+- Retain the current condensed-display / readable-sans hierarchy only as an implementation-safe interim choice. Final font/wordmark selection requires owner-provided brand assets or licensing confirmation.
+- The wordmark is text-only (`MUNOZ MINIZ`) until a final logo and favicon arrive. Do not fabricate a symbol mark.
 
-### A. Hero — “Made for the delightfully strange”
+## 2. Content and category mapping
 
-- Full-bleed dark hero, 640–760 px desktop height and at least 620 px mobile including content. Split layout on desktop: copy left, a single hero object/scene right; stacked on mobile with copy first.
-- Eyebrow: `3D-PRINTED ODDITIES • SMALL BATCH`.
-- Headline: `Made for the delightfully strange.` Use display plus a short editorial accent; limit to 2–3 lines at desktop and 3–4 mobile.
-- Supporting copy: 1–2 sentences about expressive, made-to-order decor/accessories. Do not invent manufacturing or shipping claims.
-- Primary CTA: `Shop new arrivals`; secondary CTA: `Explore by vibe` (outline or text-with-arrow). Both link to real destinations when implementation begins.
-- Imagery: one high-quality cutout or studio scene of 2–4 best products, with a subtle checkerboard/shadow backdrop. Provide meaningful alt text; decorative flourishes have empty alt text / are presentation only.
+### Navigation
 
-### B. Shop by Vibe
+| Existing POC destination | Phase 2 label | Required destination/content source |
+| --- | --- | --- |
+| Shop | Shop | Owner-approved live catalog or category index |
+| Collections | Collections | Only show when a real collection taxonomy is supplied; otherwise omit from primary navigation |
+| Custom Prints | Custom Work | Owner-approved inquiry destination and intake rules |
+| About | About Munoz Miniz | Owner-approved brand/about copy |
 
-- Light `bone` section with dark type. Header: `Shop by Vibe`, a one-line invitation, and optional `View all` link.
-- Four visual category tiles: `Graveyard Glam`, `Hot Rod Relics`, `Cute but Cursed`, `Dungeon Desk` (names are content placeholders pending merch confirmation).
-- Desktop: four cards in one row; tablet: two-by-two; mobile: horizontally scrollable snap row or 2-column grid—choose one consistent pattern and preserve 44 px minimum tap targets.
-- Each tile has 4:5 imagery, dark gradient caption area, category name, item-count placeholder only if true data is available, and a whole-card link. Hover: image scale no greater than 1.04, visible border/arrow shift; keyboard focus mirrors hover without relying on motion.
+Search, account, and bag controls retain their accessible POC behavior until backed by a real storefront integration. They must not imply live search, sign-in, or cart checkout before those integrations exist.
 
-### C. New & Notorious
+### Homepage category and product slots
 
-- Dark section. Header with `New & Notorious` and `Shop all` link.
-- Product grid: four cards desktop, two tablet, two mobile; on very narrow screens, allow horizontally scrollable cards only if a full grid makes cards under 140 px wide.
-- Product card includes square 1:1 media, optional `New` or `Limited` badge, product name, price area, and quick-add only if variant selection can be handled safely. If variants exist, use `Choose options` instead of a misleading one-click add.
-- Media background should be `coal` or `bone`, chosen consistently for the full row. Reserve image space to avoid layout shift.
+The layout has four category tiles and four product cards. Their placement is retained, but their content is now data-driven rather than fictional.
 
-### D. Built for the Strange trust strip
+| Homepage placement | Phase 2 mapping | Required source fields | Fallback before source is supplied |
+| --- | --- | --- | --- |
+| Shop by category (up to 4 tiles) | First four owner-approved current catalog categories, in owner-supplied merchandising order | `category_name`, `category_url`, image, alt text | Hide the tile grid and show no made-up categories. Keep a single `Browse products` CTA only if it has a valid catalog destination. |
+| Featured/current products (up to 4 cards) | Current owner-approved products, in owner-supplied merchandising order | `product_name`, `product_url`, image, alt text, price/display price, availability, variant behavior, optional verified badge | Hide the product grid; do not use fictional names, `$00.00`, `New`, or `Limited` badges. |
+| Featured collection | One genuine owner-approved collection | collection name, URL, image, alt text, description | Omit the section, or use a neutral brand/process panel with no collection claim. |
+| Community/gallery | Only consented Munoz Miniz product or customer images | asset permission, image, alt/caption, outbound destination disclosure | Omit it. Do not substitute invented testimonials, follower counts, or social claims. |
 
-- Thin high-contrast horizontal strip between shopping blocks. Three to four short proof points with simple line icons: `Made in small batches`, `Designed for your dark side`, `Customizable when possible`, `Packed with care`.
-- Treat all statements as placeholders requiring owner verification; never show material, durability, origin, or delivery claims without confirmation.
-- Desktop inline; mobile two-column grid or stacked list. Icons are decorative only if the text repeats their meaning.
+### Required catalog handoff
 
-### E. Featured Collection
+Before Developer maps a single product, the owner must provide a current source of truth (store export/API, approved spreadsheet, or authoritative storefront URLs) containing the fields above. The source must identify which products/categories are active and which copy, images, prices, badges, and links are approved for this homepage.
 
-- Asymmetric banner, `cherry`/dark gradient field with an oversized collection image framed like a vintage poster.
-- Copy: eyebrow `FEATURED COLLECTION`, title placeholder `The Midnight Menagerie`, two-line description, CTA `Enter the collection`.
-- Desktop uses 5/7 or 6/6 image/copy split; mobile places image before copy. Maintain 4:3 image area and a clear CTA above the fold of this component.
+## 3. Revised homepage copy
 
-### F. Custom Print callout
+All final copy below is intentionally factual and may be used only after the linked destination is real.
 
-- Light panel with dark border and restrained chrome/thorn illustration. Goal: route visitors to an inquiry flow, not promise that every request is accepted.
-- Heading: `Got a weird idea? Let’s make it real.`
-- Copy names the intended request inputs: reference, size, color, and use case. CTA: `Start a custom request`.
-- Include a small expectation note: `Availability and pricing confirmed after review.` This is required to avoid overpromising.
+| Location | Approved Phase 2 copy |
+| --- | --- |
+| Announcement | `3D-printed products and custom work from Munoz Miniz.` |
+| Hero eyebrow | `MUNOZ MINIZ · 3D-PRINTED PRODUCTS` |
+| Hero H1 | `Small prints. Big personality.` |
+| Hero supporting text | `Explore current 3D-printed products from Munoz Miniz, or start a custom-work conversation.` |
+| Hero primary CTA | `Shop current products` |
+| Hero secondary CTA | `Explore categories` |
+| Category section H2 | `Shop by category` |
+| Category support | `Browse the current Munoz Miniz lineup.` |
+| Product section eyebrow/H2 | `CURRENT LINEUP` / `Featured products` |
+| Featured collection eyebrow/H2 | `FEATURED` / owner-supplied collection name only |
+| Custom-work H2 | `Have a custom idea?` |
+| Custom-work text | `Share your reference, preferred size, color, and intended use. Munoz Miniz will review the request before confirming availability and pricing.` |
+| Custom CTA | `Start a custom-work inquiry` |
+| Newsletter H2 | `Stay in the loop` |
+| Newsletter text | `Get updates from Munoz Miniz.` |
 
-### G. Community / social proof
+Do not use the former terms “Nightshift Objects,” “delightfully strange,” “misfit,” “dark side,” “New & Notorious,” “Midnight Menagerie,” or “Seen in the Wild.”
 
-- Dark section headed `Seen in the Wild`.
-- Six square user/community images in an offset collage or uniform grid; use only consented user-generated content or branded images. Each clickable tile needs descriptive alt text/caption and destination disclosure when it leaves the site.
-- Supporting CTA: `Tag @brand to get featured` is a placeholder until the social handle and campaign consent process are confirmed.
-- If proof/assets are unavailable, use a styled editorial gallery rather than fabricated reviews, follower counts, or testimonials.
+## 4. Layout preservation and accessibility requirements
 
-### H. Footer
+Preserve the approved structure in this order: header, hero, category browsing, featured products, trust/process strip, featured collection/process panel, custom-work callout, optional consented gallery, newsletter/footer. A section may be omitted only where the no-invention fallback above applies; remaining sections must not acquire dead anchors or empty controls.
 
-- Email panel first: `Join the misfit mailing list` with one field, clear submit button, visible privacy link, success/error state, and consent wording appropriate to the actual email platform.
-- Footer links grouped as Shop, Help, and Social; include contact, policies, accessibility statement if available, and copyright.
-- Use a compact gothic divider motif, but prioritize readable navigation and legal text.
+The following QA-passed behavior is non-negotiable:
 
-## 5. Components and interaction states
+1. Keep semantic landmarks, skip link, one H1, ordered H2 hierarchy, accessible names, and visible keyboard focus styling.
+2. Keep the mobile menu close control, Escape support, focus trap while open, and return focus to the visible menu toggle after a navigation link closes it. Focus must never remain in hidden content.
+3. Keep responsive behavior from 320 px upward, no horizontal overflow, the approved grid collapse rules, sticky-header anchor offset, and `prefers-reduced-motion` handling.
+4. Keep the programmatic association between the email input and its validation/success feedback. Do not claim an email subscription succeeded until a real provider exists.
+5. Keep every footer fragment link pointed to a real HTML target without JavaScript. Remove any group whose live link or valid fallback target does not exist.
+6. For real product cards, expose actual price/availability/variant information supplied by the catalog. Use `Choose options` only when a working, accessible variant route exists; otherwise use a valid product-details link.
+7. Retain 44 by 44 CSS-pixel minimum targets, WCAG 2.2 AA contrast, error text that is not color-only, reserved image dimensions, and accurate alt text. Decorative visuals remain hidden from assistive technology.
 
-### Buttons and links
+## 5. Asset and content inventory
 
-- Primary: `cherry` fill, `ink` text; hover darkens slightly or shifts to `hot-pink`; active has an inset/pressed treatment.
-- Secondary: transparent with `bone` or `ink` border based on surface; hover fills with the inverse surface color.
-- All interactive elements have a 2 px visible focus ring in `acid` or `bone` with at least 3:1 contrast, 44×44 px minimum hit area, and clear disabled state (reduced contrast plus `aria-disabled`/native disabled as applicable).
+| Item | Status | Needed before use |
+| --- | --- | --- |
+| Official wordmark/logo and favicon | Missing | Approved files and usage/clear-space guidance |
+| Brand accent, typography, and photography direction | Not documented | Brand kit or owner approval of the interim system |
+| Current catalog and category mapping | Missing | Authoritative active-product source with fields in section 2 |
+| Product and category imagery | Missing | Optimized approved assets, dimensions, and accurate alt text |
+| Custom-work route | Missing | Form/URL, acceptance scope, privacy language, and confirmation behavior |
+| Email/newsletter provider and consent copy | Missing | Provider integration, privacy URL, and compliant consent text |
+| Legal/help/social links | Missing | Verified URLs; no placeholder `mailto`, social, or policy links |
+| Customer/community content | Missing | Explicit consent, captions, and external-destination disclosure |
 
-### Cards, badges, and forms
+## 6. Implementation acceptance criteria
 
-- Cards lift 2–4 px or add a border on hover; respect `prefers-reduced-motion` by removing transform animation.
-- Badges are short, uppercased, and text-backed (`New`, `Limited`); never convey sale/stock status by color alone.
-- Inputs have persistent visible labels (email label may be visually concise but cannot be placeholder-only), inline validation, error text associated programmatically, and no validation based only on color.
+Developer may submit Phase 2 to QA only when all conditions below are met:
 
-### Motion
+1. All `Nightshift Objects` identity, fictional product/category names, fictional prices, generic `hello@example.com`, and placeholder storefront claims have been removed from user-facing content.
+2. `Munoz Miniz` is used as the text brand name; any additional brand assertion, product, category, price, image, badge, claim, or link can be traced to the owner-approved source of truth.
+3. The approved homepage layout and all accessibility behavior in section 4 are preserved; any unavailable content uses the defined omission/fallback behavior with no empty grid, dead link, or misleading interactive control.
+4. Product cards and category tiles render only from an owner-approved current catalog mapping, with real destinations and accurate alternatives. No current catalog data means those components are hidden rather than fabricated.
+5. Custom-work and newsletter controls either connect to their owner-approved live services or clearly operate as non-submitting UI without a false success state; form accessibility remains intact in either case.
+6. New/updated imagery reserves space, uses appropriate responsive delivery and accurate alt text, and does not embed essential text within the image.
+7. QA verifies keyboard, mobile-menu focus restoration, no-JavaScript footer destinations, email feedback association, responsive widths, reduced-motion behavior, and all new content links.
 
-- Use 150–250 ms opacity/transform transitions only. Hero decorative elements may drift subtly; disable nonessential motion under `prefers-reduced-motion`.
-- No autoplay video, flashing, rapid checkerboard animation, parallax dependent on pointer movement, or text that moves on hover.
+## 7. Owner decisions still required
 
-## 6. Responsive requirements
-
-- Design from 320 px upward; validate at 320, 375, 768, 1024, 1280, and 1440 px widths.
-- Navigation collapses before labels crowd; no horizontal page overflow.
-- Hero art must not crop product focal points or cover copy. Maintain a readable image alternative where image loading fails.
-- Tile and product grids adapt as specified, with card titles/prices remaining visible without truncating essential information.
-- Sticky header must not hide anchored section headings; account for it in scroll offset.
-- Hover-only affordances must remain available through touch and keyboard interaction.
-
-## 7. Assets and content inputs required before implementation
-
-- Final wordmark/logo and favicon; otherwise use a text wordmark placeholder, not an invented logo.
-- One hero composite or 2–4 isolated product renders; four category images; 4–8 product images; one featured-collection image; six approved community/gallery images.
-- Product names, prices, availability/badges, category/collection URLs, and verified trust statements.
-- Custom-request destination/form, email provider integration and required consent/privacy copy, social handles and approved outbound links.
-- Font licensing/hosting decision. Use web-safe fallbacks until confirmed.
-
-Image guidance: use WebP/AVIF where supported with responsive sources; preserve product cutout transparency when useful; supply meaningful product alt text that describes object, color, and visible distinguishing feature. Do not embed text that is essential to understanding within images.
-
-## 8. Accessibility and quality bar
-
-- Conform to WCAG 2.2 AA for contrast, keyboard access, focus order/visibility, semantic landmarks/headings, form errors, and reduced motion.
-- Use one H1 (hero); section headings use H2; card titles follow the surrounding hierarchy.
-- Provide `main`, `nav`, and `footer` landmarks, a visible skip link, and accessible names for icon-only controls.
-- Images must have appropriate alternatives; purely decorative assets are hidden from assistive technology.
-- Keep initial page weight disciplined: lazy-load below-the-fold imagery; reserve dimensions; do not load decorative libraries solely for ornaments.
-
-## 9. Implementation acceptance criteria
-
-The eventual implementation is ready for QA only when all of the following are true:
-
-1. It contains the eight sections above in the specified order, with both hero CTAs, shopping/category links, custom-request CTA, and email signup UI present.
-2. It implements the color and typography hierarchy while preserving WCAG AA contrast and readable body text.
-3. It works without horizontal scrolling from 320 px through desktop and follows the stated grid/navigation behavior.
-4. Every keyboard-reachable control has a visible focus state; menus, forms, and icon controls have accessible names and operable states.
-5. Product/category cards, buttons, and forms visibly support default, hover/focus, active, disabled (when relevant), success, and error states.
-6. Images have reserved space, appropriate responsive delivery, and accurate alt behavior; no fabricated reviews, claims, social proof, or commerce data are presented as fact.
-7. Nonessential animation honors `prefers-reduced-motion` and no content relies on hover, motion, or color alone.
-8. Placeholder content is clearly identifiable and can be replaced by the approved asset/content inputs without structural redesign.
-
-## 10. Open decisions for Director/Owner
-
-- Confirm brand name/wordmark, product catalog, prices, and the final category/collection naming.
-- Approve or revise the trust-strip claims after verifying actual fulfillment/customization capabilities.
-- Confirm custom-order intake process, social handle, email provider, privacy/consent language, and all final imagery permissions.
-- Confirm font choices and any available brand photography/render style.
+1. Supply/approve the authoritative current catalog and category order.
+2. Supply final logo, favicon, approved brand colors/fonts, and product photography.
+3. Confirm the custom-work intake process, what can be promised publicly, and the contact destination.
+4. Confirm email provider, privacy/consent wording, policies, help/contact, and social destinations.
+5. Approve whether a featured collection and consented community/gallery section should ship in Phase 2.
 
 ## Handoff rule
 
-Developer must not begin implementation until the Director explicitly marks this specification ready and delegates the work. Owner approval remains required for any merge to `master`, deployment, public publishing, spending, or other irreversible action.
+Developer must not begin implementation until the Director reviews this specification and explicitly delegates development. This specification does not grant authority to merge, deploy, publish, or alter any live storefront.
