@@ -12,7 +12,15 @@
     <style>
       .wordmark { gap: 8px; }
       .brand-logo { display: block; width: 36px; height: 54px; flex: none; object-fit: contain; }
-      @media (max-width: 390px) { .brand-logo { width: 30px; height: 46px; } }
+      @media (max-width: 760px) {
+        .site-header, .wordmark, .hero, .hero-copy { min-width: 0; }
+        .wordmark { flex-shrink: 1; }
+        .utilities, .menu-button { flex: none; }
+      }
+      @media (max-width: 390px) {
+        .brand-logo { width: 30px; height: 46px; }
+        .utilities { display: none; }
+      }
     </style>
     <style>.section-light .eyebrow{color:#a21d3a}.poc-dialog{max-width:32rem;padding:2rem;border:2px solid var(--gold);background:var(--graphite);color:var(--paper);box-shadow:8px 8px 0 var(--cherry)}.poc-dialog::backdrop{background:color-mix(in srgb,var(--ink) 80%,transparent)}.dialog-close{position:absolute;top:.5rem;right:.5rem;min-width:44px;min-height:44px;border:0;background:transparent;color:var(--paper);font-size:1.6rem;cursor:pointer}.poc-dialog h2{font-size:2.4rem;margin-right:2rem}.poc-dialog-message{margin:1rem 0 0}.wordmark,nav a,.text-link,footer .footer-links a:not(.wordmark),.skip-link{display:inline-flex;align-items:center;min-width:44px;min-height:44px}.skip-link{justify-content:center}footer .footer-links a:not(.wordmark){display:flex}</style>
   </head>
