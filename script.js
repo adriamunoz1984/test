@@ -47,3 +47,27 @@ form?.addEventListener('submit', (event) => {
   if (!email?.validity.valid) { message.textContent = 'Enter a valid email address to join the list.'; message.className = 'form-message error'; email.setAttribute('aria-invalid', 'true'); email.focus(); return; }
   message.textContent = 'This proof of concept does not submit data.'; message.className = 'form-message'; email.removeAttribute('aria-invalid');
 });
+
+document.querySelectorAll('[data-gallery]').forEach((gallery) => {
+  const mainImage = gallery.querySelector('.gallery-main-image');
+  const thumbnails = [...gallery.querySelectorAll('.gallery-thumb')];
+  const announcement = gallery.querySelector('.gallery-announcement');
+  const selectImage = (thumbnail) => {
+    if (!mainImage) return;
+    mainImage.src = thumbnail.dataset.imageSrc;
+    mainImage.alt = thumbnail.dataset.imageAlt;
+    if (announcement) announcement.textContent = thumbnail.dataset.imageAlt;
+    thumbnails.forEach((button) => {
+      const selected = button === thumbnail;
+      button.classList.toggle('is-current', selected);
+      if (selected) button.setAttribute('aria-current', 'true');
+      else button.removeAttribute('aria-current');
+      button.querySelector('.sr-only')?.remove();
+    });
+    const currentText = document.createElement('span');
+    currentText.className = 'sr-only';
+    currentText.textContent = 'Current image';
+    thumbnail.append(currentText);
+  };
+  thumbnails.forEach((thumbnail) => thumbnail.addEventListener('click', () => selectImage(thumbnail)));
+});

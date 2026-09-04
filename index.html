@@ -10,25 +10,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-      .wordmark { gap: 8px; }
-      .brand-logo { display: block; width: 36px; height: 54px; flex: none; object-fit: contain; }
+      .wordmark { gap: 7px; }
+      .brand-logo { display: block; width: 44px; height: 56px; flex: none; object-fit: contain; background: #fff; }
       @media (max-width: 760px) {
         .site-header, .wordmark, .hero, .hero-copy { min-width: 0; }
         .wordmark { flex-shrink: 1; }
+        .brand-logo { width: 38px; height: 48px; }
         .utilities, .menu-button { flex: none; }
       }
       @media (max-width: 390px) {
-        .brand-logo { width: 30px; height: 46px; }
+        .brand-logo { width: 30px; height: 40px; }
         .utilities { display: none; }
       }
     </style>
-    <style>.section-light .eyebrow{color:#a21d3a}.poc-dialog{max-width:32rem;padding:2rem;border:2px solid var(--gold);background:var(--graphite);color:var(--paper);box-shadow:8px 8px 0 var(--cherry)}.poc-dialog::backdrop{background:color-mix(in srgb,var(--ink) 80%,transparent)}.dialog-close{position:absolute;top:.5rem;right:.5rem;min-width:44px;min-height:44px;border:0;background:transparent;color:var(--paper);font-size:1.6rem;cursor:pointer}.poc-dialog h2{font-size:2.4rem;margin-right:2rem}.poc-dialog-message{margin:1rem 0 0}.wordmark,nav a,.text-link,footer .footer-links a:not(.wordmark),.skip-link{display:inline-flex;align-items:center;min-width:44px;min-height:44px}.skip-link{justify-content:center}footer .footer-links a:not(.wordmark){display:flex}</style>
+    <style>.section-light .eyebrow{color:#a21d3a}.poc-dialog{max-width:32rem;padding:2rem;border:2px solid var(--gold);background:var(--graphite);color:var(--paper);box-shadow:8px 8px 0 var(--cherry)}.poc-dialog::backdrop{background:color-mix(in srgb,var(--ink) 80%,transparent)}.dialog-close{position:absolute;top:.5rem;right:.5rem;min-width:44px;min-height:44px;border:0;background:transparent;color:var(--paper);font-size:1.6rem;cursor:pointer}.poc-dialog h2{font-size:2.4rem;margin-right:2rem}.poc-dialog-message{margin:1rem 0 0}.wordmark,nav a,.text-link,footer .footer-links a:not(.wordmark),.skip-link{display:inline-flex;align-items:center;min-width:44px;min-height:44px}.skip-link{justify-content:center}footer .footer-links a:not(.wordmark){display:flex}
+      .hero-art{min-height:0;aspect-ratio:16/10;background:var(--graphite)}.hero-art picture,.hero-art img{display:block;width:100%;height:100%}.hero-art img{object-fit:cover;object-position:44% center}.hero-art::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#170d121c,transparent 35%,#170d121c)}.product-media{aspect-ratio:3/4;min-height:220px}.product-media img{object-fit:contain;object-position:center}.product-gallery{min-width:0}.gallery-controls{display:grid;grid-template-columns:repeat(5,minmax(44px,1fr));gap:8px;margin-top:14px}.gallery-thumb{position:relative;min-width:44px;min-height:44px;aspect-ratio:1;border:1px solid #fff3de50;background:var(--graphite);padding:0;cursor:pointer;overflow:hidden}.gallery-thumb img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}.gallery-thumb.is-current{outline:2px solid var(--paper);outline-offset:2px}.product-card-no-image{border:0;padding:0;background:none}.product-media-placeholder{display:grid;place-items:center;padding:1rem;border:2px dashed var(--cherry);box-shadow:none;color:var(--steel);text-align:center;font-weight:700}.product-media-sleeve{aspect-ratio:2/3}@media(max-width:760px){.hero-art{min-height:0;aspect-ratio:4/3}.hero-art img{object-position:50% 45%}.product-media{aspect-ratio:4/5}.product-media-sleeve{aspect-ratio:2/3}}@media(max-width:390px){.gallery-controls{grid-template-columns:repeat(5,minmax(44px,1fr))}}</style>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="announcement">3D-printed products and custom work from Munoz Miniz.</div>
     <header class="site-header">
-      <a class="wordmark" href="#top" aria-label="Munoz Miniz home"><img class="brand-logo" src="assets/images/products/logo2.webp" alt="" width="36" height="54">MUNOZ <span>MINIZ</span></a>
+      <a class="wordmark" href="#top" aria-label="Munoz Miniz home"><img class="brand-logo" src="assets/images/products/logo2.webp" alt="" width="44" height="56">MUNOZ <span>MINIZ</span></a>
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav"><span class="sr-only">Open menu</span><span aria-hidden="true">&#9776;</span></button>
       <nav id="site-nav" aria-label="Primary navigation">
         <button class="menu-close" type="button"><span class="sr-only">Close menu</span><span aria-hidden="true">&times;</span></button>
@@ -51,23 +53,34 @@
           <p class="lede">Explore current 3D-printed products from Munoz Miniz, or start a custom-work conversation.</p>
           <div class="actions"><a class="button primary" href="#products">Shop current products</a><a class="text-link" href="#custom">Custom work <span aria-hidden="true">&rarr;</span></a></div>
         </div>
-        <div class="hero-art" aria-hidden="true"><div class="grid-mark"></div><div class="hero-disc"></div><div class="hero-block hero-block-one"></div><div class="hero-block hero-block-two"></div></div>
+        <div class="hero-art" aria-hidden="true"><picture><source media="(min-width: 761px)" srcset="assets/images/products/Hero_2_wide.webp"><img src="assets/images/products/Hero_2.webp" alt="" width="4" height="3"></picture></div>
       </section>
 
       <section id="products" class="products section-dark" aria-labelledby="products-title">
         <div class="section-heading"><div><p class="eyebrow">CURRENT LINEUP</p><h2 id="products-title">Featured products</h2></div></div>
         <div class="product-grid">
           <article class="product-card">
-            <div class="product-media"><img src="assets/images/products/ganja_gadget_80s_forest_collection.webp" alt="A flexible all-in-one smoking accessory designed to keep the little things you use most in one place."></div>
+            <div class="product-gallery" data-gallery="ganja-gadget">
+              <div class="product-media"><img class="gallery-main-image" src="assets/images/products/ganja_gadget_80s_forest_collection.webp" alt="Four open Ganja Gadget items arranged on a dark textured surface." width="3" height="4"></div>
+              <div class="gallery-controls" aria-label="Ganja Gadget image gallery">
+                <button type="button" class="gallery-thumb is-current" aria-current="true" aria-label="Show image 1 of 5 for Ganja Gadget" data-image-src="assets/images/products/ganja_gadget_80s_forest_collection.webp" data-image-alt="Four open Ganja Gadget items arranged on a dark textured surface."><img src="assets/images/products/ganja_gadget_80s_forest_collection.webp" alt="" width="1" height="1"><span class="sr-only">Current image</span></button>
+                <button type="button" class="gallery-thumb" aria-label="Show image 2 of 5 for Ganja Gadget" data-image-src="assets/images/products/ganja_gadget_80s_forest_green_orange.webp" data-image-alt="An open Ganja Gadget shown against a dark forest floor."><img src="assets/images/products/ganja_gadget_80s_forest_green_orange.webp" alt="" width="1" height="1" loading="lazy"></button>
+                <button type="button" class="gallery-thumb" aria-label="Show image 3 of 5 for Ganja Gadget" data-image-src="assets/images/products/ganja_gadget_80s_forest_lime_orange.webp" data-image-alt="An open Ganja Gadget shown against a dark forest floor."><img src="assets/images/products/ganja_gadget_80s_forest_lime_orange.webp" alt="" width="1" height="1" loading="lazy"></button>
+                <button type="button" class="gallery-thumb" aria-label="Show image 4 of 5 for Ganja Gadget" data-image-src="assets/images/products/ganja_gadget_80s_forest_pink_aqua.webp" data-image-alt="An open Ganja Gadget shown against a dark forest floor."><img src="assets/images/products/ganja_gadget_80s_forest_pink_aqua.webp" alt="" width="1" height="1" loading="lazy"></button>
+                <button type="button" class="gallery-thumb" aria-label="Show image 5 of 5 for Ganja Gadget" data-image-src="assets/images/products/ganja_gadget_80s_forest_teal_blue.webp" data-image-alt="An open Ganja Gadget shown against a dark forest floor."><img src="assets/images/products/ganja_gadget_80s_forest_teal_blue.webp" alt="" width="1" height="1" loading="lazy"></button>
+              </div>
+              <p class="sr-only gallery-announcement" aria-live="polite"></p>
+            </div>
             <h3>Ganja Gadget</h3><p class="price">$20 for 1 or $30 for 2</p>
             <p class="product-description">A flexible all-in-one smoking accessory designed to keep the little things you use most in one place.</p>
           </article>
           <article class="product-card product-card-no-image">
+            <div class="product-media product-media-placeholder">Product image not yet available</div>
             <h3>Handmade Dab Tools</h3><p class="price">$25 each</p>
             <p class="product-description">One-of-a-kind dab tools hand-designed with wire and jewelry-style details, giving each piece its own character.</p>
           </article>
           <article class="product-card">
-            <div class="product-media"><img src="assets/images/products/lighterSleeve_80s_forest_red.webp" alt="A flexible spiked sleeve that gives an ordinary lighter a more aggressive Munoz Miniz look."></div>
+            <div class="product-media product-media-sleeve"><img src="assets/images/products/lighterSleeve_80s_forest_red.webp" alt="A red spiky lighter sleeve fitted around a lighter on a dark forest floor." width="2" height="3"></div>
             <h3>Spiky Lighter Sleeve</h3><p class="price">$15</p>
             <p class="product-description">A flexible spiked sleeve that gives an ordinary lighter a more aggressive Munoz Miniz look.</p>
           </article>
