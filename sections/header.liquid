@@ -1,0 +1,9 @@
+<header class="site-header" {{ section.shopify_attributes }}>
+  <a class="wordmark" href="{{ routes.root_url }}" aria-label="{{ section.settings.brand_name | escape }} home">
+    {% if section.settings.logo != blank %}{{ section.settings.logo | image_url: width: 160 | image_tag: class: 'brand-logo', alt: '', widths: '60,88,120,160', loading: 'eager' }}{% endif %}{{ section.settings.brand_name | escape }}
+  </a>
+  <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav-{{ section.id }}"><span class="sr-only">Open menu</span><span aria-hidden="true">&#9776;</span></button>
+  <nav id="site-nav-{{ section.id }}" aria-label="Primary navigation"><button class="menu-close" type="button"><span class="sr-only">Close menu</span><span aria-hidden="true">&times;</span></button>{% if section.settings.menu != blank %}{% for link in section.settings.menu.links %}<a href="{{ link.url }}">{{ link.title | escape }}</a>{% endfor %}{% else %}<a href="#products">Shop</a><a href="#custom">Custom Work</a><a href="#about">About Munoz Miniz</a>{% endif %}</nav>
+  <div class="utilities"><button type="button" data-notice="This control is not connected in this proof of concept." aria-label="Search"><span aria-hidden="true">&#8981;</span></button><button type="button" data-notice="This control is not connected in this proof of concept." aria-label="Account"><span aria-hidden="true">&#9786;</span></button><button type="button" data-notice="This control is not connected in this proof of concept." aria-label="Shopping bag, 0 items"><span aria-hidden="true">&#9834;</span><span class="cart-count">0</span></button></div>
+</header>
+{% schema %}{"name":"Header","settings":[{"type":"image_picker","id":"logo","label":"Logo image"},{"type":"text","id":"brand_name","label":"Logo accessible name / brand name","default":"Munoz Miniz"},{"type":"link_list","id":"menu","label":"Primary menu"}],"presets":[{"name":"Header"}]}{% endschema %}
