@@ -10,7 +10,7 @@
 
 `CATALOG.md` is the owner-approved source of truth for Phase 2 brand, product, price, status, merchandising order, description, and product-image facts. Implementation may use only facts and image paths physically present in that document. It must not infer a value where `CATALOG.md` says `NEEDS OWNER INPUT`.
 
-The current homepage is a non-deployed proof of concept. A storefront URL, checkout, custom-work submission, email subscription, legal links, social links, logo/favicon, and any product field marked `NEEDS OWNER INPUT` are not approved for live use. POC controls must continue to state when they are unconnected rather than imply a working transaction or submission.
+The current homepage is a non-deployed proof of concept. A storefront URL, checkout, custom-work submission, email subscription, legal links, social links, favicon, and any product field marked `NEEDS OWNER INPUT` are not approved for live use. POC controls must continue to state when they are unconnected rather than imply a working transaction or submission.
 
 ## 1. Brand direction
 
@@ -25,8 +25,16 @@ Use direct factual language. Claims about materials, colors, functions, handmade
 - Preserve a high-contrast dark shell, bold display typography, tactile product presentation, and goth / rockabilly / horror-inflected art direction.
 - Graphic motifs may support the brand when they are clearly decorative and do not state unverified product facts. Decorative visuals must be hidden from assistive technology.
 - Product photography remains primary wherever an approved image reference exists. Do not generate, substitute, or mislabel product photography.
-- Use a text wordmark, `MUNOZ MINIZ`, until an owner-approved logo and favicon are supplied. Do not fabricate a symbol mark.
+- Use the owner-supplied logo asset, `assets/images/products/logo2.webp`, as the header symbol paired with the text wordmark `MUNOZ MINIZ`. Do not alter, regenerate, recolor, or derive a favicon from the asset.
 - Any interim colors and typography are POC styling choices, not asserted official brand assets.
+
+### Logo integration specification
+
+- **Source:** use the existing WebP file at `assets/images/products/logo2.webp`; retain that exact file and path. It is a portrait-oriented, opaque white-background raster with black, white, and red artwork, so render it on its own without CSS filters, blend modes, or color treatment.
+- **Placement:** replace the header's text-only home link with one horizontal brand lockup: logo at the far left, followed by the existing `MUNOZ MINIZ` wordmark. The complete lockup remains the existing home anchor and retains its accessible name, `Munoz Miniz home`.
+- **Sizing:** reserve a 36 by 54 CSS-pixel image box on desktop and 30 by 46 CSS pixels at 390 px and below; use `width` and `height` attributes matching the rendered box to prevent layout shift. Keep the image fully contained, centered, and un-cropped. Maintain a 6-8 px gap before the wordmark and preserve the header's existing 44 px minimum interactive target.
+- **Responsive behavior:** keep the lockup on one line from 320 px upward. At narrow widths, retain the existing utility-button hiding behavior before reducing the logo; do not let the logo overlap the menu or utility controls, wrap, or cause horizontal scrolling. The mobile navigation, focus behavior, sticky header, and anchor offsets remain unchanged.
+- **Accessibility:** because the adjacent visible wordmark and anchor already name the destination, use empty `alt` text on the logo image. Do not add a second accessible name or make the image independently focusable.
 
 ## 2. Owner-approved catalog mapping
 
@@ -83,7 +91,7 @@ The following gaps remain only because `CATALOG.md` explicitly records `NEEDS OW
 - Storefront/product URLs for all active products.
 - Handmade Dab Tools image/file reference.
 - Spiky Lighter Sleeve available materials/colors.
-- Official logo, favicon, brand-kit colors, and font licensing/selection.
+- Favicon, brand-kit colors, and font licensing/selection.
 - Custom-work intake destination, scope, privacy language, and confirmation behavior.
 - Email provider, consent/privacy language, legal/help/social destinations, and any consented community content.
 

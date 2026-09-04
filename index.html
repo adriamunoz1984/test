@@ -9,13 +9,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <style>
+      .wordmark { gap: 8px; }
+      .brand-logo { display: block; width: 36px; height: 54px; flex: none; object-fit: contain; }
+      @media (max-width: 390px) { .brand-logo { width: 30px; height: 46px; } }
+    </style>
     <style>.section-light .eyebrow{color:#a21d3a}.poc-dialog{max-width:32rem;padding:2rem;border:2px solid var(--gold);background:var(--graphite);color:var(--paper);box-shadow:8px 8px 0 var(--cherry)}.poc-dialog::backdrop{background:color-mix(in srgb,var(--ink) 80%,transparent)}.dialog-close{position:absolute;top:.5rem;right:.5rem;min-width:44px;min-height:44px;border:0;background:transparent;color:var(--paper);font-size:1.6rem;cursor:pointer}.poc-dialog h2{font-size:2.4rem;margin-right:2rem}.poc-dialog-message{margin:1rem 0 0}.wordmark,nav a,.text-link,footer .footer-links a:not(.wordmark),.skip-link{display:inline-flex;align-items:center;min-width:44px;min-height:44px}.skip-link{justify-content:center}footer .footer-links a:not(.wordmark){display:flex}</style>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <div class="announcement">3D-printed products and custom work from Munoz Miniz.</div>
     <header class="site-header">
-      <a class="wordmark" href="#top" aria-label="Munoz Miniz home">MUNOZ <span>MINIZ</span></a>
+      <a class="wordmark" href="#top" aria-label="Munoz Miniz home"><img class="brand-logo" src="assets/images/products/logo2.webp" alt="" width="36" height="54">MUNOZ <span>MINIZ</span></a>
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav"><span class="sr-only">Open menu</span><span aria-hidden="true">&#9776;</span></button>
       <nav id="site-nav" aria-label="Primary navigation">
         <button class="menu-close" type="button"><span class="sr-only">Close menu</span><span aria-hidden="true">&times;</span></button>
