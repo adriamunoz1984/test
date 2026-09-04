@@ -101,7 +101,7 @@ These are non-blocking placeholders for the non-deployed Phase 2 POC only. They 
 
 The current implementation correctly matches the catalog mapping: all three active products, their approved prices and order, the two approved image paths, and both Coming Soon entries are present. It also retains the required POC disclosures and QA-passed accessibility/responsive behavior.
 
-There is one genuine visual-direction mismatch: the current hero and supporting artwork use a restrained geometric/mechanical treatment and the existing stylesheet explicitly frames the palette as an interim neutral/cobalt system. That does not clearly express the approved goth / rockabilly / horror direction. No code was changed as part of this documentation-only handoff. A future implementation change is warranted if Owner expects that approved aesthetic to be visibly expressed in the POC; it must preserve the catalog and accessibility constraints above.
+The implemented hero and supporting artwork visibly express the approved goth / rockabilly / horror direction through a dark cherry, graphite, paper, and gold palette, tactile stripe details, spiked graphic treatment, and the two catalog-approved product images. The stylesheet no longer uses the interim neutral/cobalt system. This presentation remains bounded by the catalog: it introduces no unverified product facts, preserves the approved product mapping and POC disclosures, and retains the QA-passed accessibility and responsive behavior.
 
 ## Handoff rule
 
