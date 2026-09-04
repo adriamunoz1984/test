@@ -1,114 +1,135 @@
-# Munoz Miniz Homepage — Phase 3 Brand Assets and Product Gallery Specification
+# Munoz Miniz Homepage — Phase 4 Shopify OS 2.0 Conversion Specification
 
-## Status, scope, and evidence boundary
+## Status and boundary
 
-**Status:** Implementation-ready design specification for Phase 3 only. It does not authorize implementation, a merge, deployment, publication, changes to `CATALOG.md`, price changes, or external communication.
+**Status:** Implementation-ready design specification for a Shopify Online Store 2.0 *theme conversion*. It authorizes neither a live-store connection nor theme publishing, checkout configuration, catalog changes, deployment, or merge.
 
-**Objective:** Improve the visual polish of the approved, responsive Munoz Miniz homepage with the real repository assets while preserving the approved goth / rockabilly / horror direction and every Phase 2 catalog, accessibility, and POC boundary.
+**Objective:** Re-express the approved Phase 3 static homepage as a reusable Shopify OS 2.0 theme while retaining its goth / rockabilly / horror look, exact customer-facing copy and catalog facts, responsive behavior, accessibility, product-gallery behavior, and POC safety boundary.
 
-`CATALOG.md` remains the sole source of product names, prices, descriptions, features, status, merchandising order, and approved catalog facts. This specification only directs visual use of repository files. No image is evidence for a new catalog claim. Do not infer availability, variants, materials, compatibility, or a product URL from an image or filename.
+`CATALOG.md` remains the owner-controlled business source of truth. Shopify is the runtime presentation source only for products, collections, prices, media, and availability when store data exists. Theme code must never invent, correct, or overwrite a catalog fact from Shopify data or image filenames. No live Shopify store must be contacted.
 
-## 1. Asset inspection record
+## 1. Required theme architecture
 
-The Designer inspected every asset under `assets/images/products` on 2026-09-04. The available files and their intended Phase 3 disposition are:
+Create a conventional, self-contained OS 2.0 theme structure. Do not retain `index.html` as the rendered homepage after conversion; it may remain as a static reference only if Developer has a reason to preserve it, but no theme behavior may depend on it.
 
-| Asset | Visual inspection | Phase 3 disposition |
-| --- | --- | --- |
-| `logo2.webp` | Black, white, and red Munoz Miniz symbol on a white rectangular field; portrait canvas with substantial white space above and below the mark. | Use as the supplied real logo in the header lockup; preserve the complete asset and its white field. Not a favicon source. |
-| `Hero_1.webp` | Desaturated horror scene with a visible turquoise/blue object. | Do not use in the initial hero; retain as an unused repository asset. |
-| `Hero_2.webp` | Square/near-square moonlit horror scene with a colorful object at left. | Mobile hero art source. |
-| `Hero_2_wide.webp` | Wide moonlit horror scene with the colorful object held at left and open darker space through the center/right. | Desktop and tablet hero art source. |
-| `Hero_3_wide.webp` | Wide dark character portrait with a colorful pendant-like object. | Do not use in the initial hero; retain as an unused repository asset. |
-| `ganja_gadget_80s_forest_collection.webp` | Four open Ganja Gadget items arranged on a dark, gothic tabletop. | Ganja Gadget gallery default image. |
-| `ganja_gadget_80s_forest_green_orange.webp` | Single open Ganja Gadget product view in a dark forest setting. | Ganja Gadget gallery image 2. |
-| `ganja_gadget_80s_forest_lime_orange.webp` | Single open Ganja Gadget product view in a dark forest setting. | Ganja Gadget gallery image 3. |
-| `ganja_gadget_80s_forest_pink_aqua.webp` | Single open Ganja Gadget product view in a dark forest setting. | Ganja Gadget gallery image 4. |
-| `ganja_gadget_80s_forest_teal_blue.webp` | Single open Ganja Gadget product view in a dark forest setting. | Ganja Gadget gallery image 5. |
-| `lighterSleeve_80s_forest_red.webp` | Red spiky lighter sleeve on a lighter in a dark forest setting. | Spiky Lighter Sleeve primary media. |
-| `Bowlder_80s_forest_grad.webp` | A separate glass-and-printed-object photograph in a dark forest setting. | Do not associate with an active product or use in Phase 3 without Owner confirmation. |
+| Path | Responsibility |
+| --- | --- |
+| `layout/theme.liquid` | Document shell: `<!doctype html>`, language, title/meta hooks, `{{ content_for_header }}`, font loading if retained, CSS/JS asset tags, skip link, global announcement/header/footer sections or section groups, `<main id="MainContent">{{ content_for_layout }}</main>`, and the existing proof-of-concept dialog only if its controls remain. |
+| `templates/index.json` | Homepage section composition and editable section order. Use named section instances, with no business copy hard-coded in JSON beyond schema defaults. |
+| `sections/announcement-bar.liquid` | Existing announcement strip. |
+| `sections/header.liquid` | Logo/wordmark, primary navigation, utility controls, accessible mobile navigation. |
+| `sections/hero.liquid` | Approved Hero_2 media treatment, hero copy, and two calls-to-action. |
+| `sections/featured-products.liquid` | Section heading, collection-driven product cards, catalog/POC notice, and empty-state handling. |
+| `sections/trust-strip.liquid` | The three-item process strip. |
+| `sections/about-coming-soon.liquid` | Existing light “Products with personality” area and Coming Soon list. |
+| `sections/custom-work.liquid` | Existing custom-work callout and safe non-submitting action. |
+| `sections/newsletter.liquid` | Existing footer newsletter presentation; retain non-submitting POC behavior unless the Owner separately approves a real Shopify customer form. |
+| `sections/footer.liquid` | Footer wordmark, navigation, and copyright. |
+| `snippets/product-card.liquid` | Reusable featured-product card, media selection, price display, gallery markup, and safe missing-product state. |
+| `snippets/product-gallery.liquid` | Reusable accessible media/gallery component, used by `product-card` where product media exists. |
+| `assets/base.css` (or a clearly named equivalent) | Migrate approved styles from `styles.css` and Phase 3 overrides without visual redesign. |
+| `assets/theme.js` (or a clearly named equivalent) | Migrate current menu, dialog/POC, newsletter POC, and gallery interaction without changing behavior. |
 
-No Dab Tools image exists in this directory. The observed `Bowlder` image must not be substituted for it or any other catalog product.
+Use `{% render %}` for snippets. Use `section.id`-scoped IDs/classes where a section can be added more than once. Include `{% schema %}` for every section with a useful Theme Editor name, defaults matching the approved static page, and sensible presets where allowed. Do not build an app, embed credentials, call external APIs, or add Shopify checkout/cart actions.
 
-## 2. Brand direction and logo treatment
+## 2. Homepage composition (`templates/index.json`)
 
-Keep the Phase 2 dark cherry, graphite, paper, and gold palette; bold display type; tactile edges; high contrast; and playful gothic / rockabilly / horror energy. Use real product media as the visual lead. Decorative textures, borders, and shadow treatments may support the media but must not introduce claims or compete with it.
+The default index template must render sections in this approved order:
 
-### `logo2.webp` suitability and header use
+1. Announcement bar
+2. Header
+3. Hero
+4. Featured products
+5. Trust strip
+6. About / Coming Soon
+7. Custom work
+8. Newsletter
+9. Footer
 
-`logo2.webp` is suitable as the real supplied brand symbol: its black/white/red mark fits the approved direction and is visually distinct from the text wordmark. Its white rectangular field is part of the supplied raster appearance; do not recolor, filter, blend, regenerate, trace, crop, or remove its background.
+Header/footer may instead be placed in Shopify section groups if the implementation uses a current theme convention. The rendered visual order, landmark order, anchor targets (`#products`, `#about`, `#custom`), and sticky-header offset must remain equivalent. Do not introduce a second H1; the hero H1 is the sole page H1.
 
-- Retain the existing home anchor and its accessible name, `Munoz Miniz home`.
-- Render the full image with `object-fit: contain` inside a white, square-edged sticker field—not directly against the dark header. Keep it non-interactive inside the one existing home link and set `alt=""` because the link has the accessible name and adjacent visible `MUNOZ MINIZ` text.
-- Target an image box of **44 × 56 CSS px** at 761 px and above, **38 × 48 CSS px** at 391–760 px, and **30 × 40 CSS px** at 320–390 px. Preserve the existing 44 px minimum target on the containing link, not on the image itself. Use matching intrinsic `width` and `height` attributes plus CSS sizing to reserve space.
-- Keep a 6–8 px gap between the symbol and visible wordmark. At narrow widths, retain the existing utility-button hiding sequence before reducing the mark or type. The lockup must remain one line from 320 px with no overlap, wrapping, clipped text, or horizontal scroll.
+## 3. Theme Editor behavior
 
-### Favicon treatment
+Theme Editor controls must make presentation configurable without permitting catalog-fact invention. Defaults must reproduce the approved Phase 3 content.
 
-Do **not** add a favicon link or derive a favicon from `logo2.webp` in Phase 3. `CATALOG.md` still records favicon as Owner input, and Phase 2 explicitly prohibited deriving one from the logo asset. The browser’s current default/no-custom-favicon behavior remains until the Owner supplies approved favicon artwork and authorizes its use.
+### Global/header settings
 
-When supplied, the future favicon handoff must include an approved square source plus 16×16, 32×32, 48×48, and 180×180 exports, dark- and light-surface legibility confirmation, and an accessible page title. It is not in scope to manufacture those assets.
+- **Logo image:** `image_picker`, default blank. If selected, show the complete supplied logo in the existing white sticker field with `image_tag`; do not crop, filter, or derive a favicon. If no logo is selected, retain the textual `MUNOZ MINIZ` lockup rather than showing a broken image.
+- **Logo accessible name / brand name:** text setting default `Munoz Miniz`; use for the home-link accessible name. The logo image remains `alt=""` when visible text/link name supplies the name.
+- **Primary menu:** `link_list`; default behavior must still expose Shop, Custom Work, and About anchors when no menu is configured. Menu links must be ordinary navigation links; do not make a product/cart interaction out of them.
+- **Announcement text:** `text`/`inline_richtext`, default `3D-printed products and custom work from Munoz Miniz.` Empty content hides the bar rather than outputting an empty landmark.
+- Keep Search, Account, and Bag as non-connected visual POC controls, clearly labeled and routed only to the existing POC dialog. Do not convert them to Shopify search, customer account, cart, or checkout functionality in this phase.
 
-## 3. Hero treatment
+### Hero settings
 
-Replace only the geometric `.hero-art` composition with supplied hero art; preserve the current hero copy, H1, buttons, landmarks, anchor behavior, and responsive order.
+- eyebrow, heading, emphasized heading portion (or safe rich text preserving the existing `<em>` treatment), lede, primary button label/link, and secondary button label/link.
+- desktop/tablet hero image picker and mobile hero image picker. Defaults should use the approved `Hero_2_wide.webp` and `Hero_2.webp` only when local theme assets can be referenced safely; otherwise leave pickers empty and document that the merchant selects uploaded copies. No fallback to Hero_1/Hero_3.
+- Preserve desktop source at >=761px, mobile source below 761px; 16/10 and 4/3 frames; cover cropping at 44% center desktop and 50% 45% mobile. Media is decorative (`alt=""`) because hero text communicates the content.
+- Buttons may link to a section anchor, page, collection, product, or URL only through picker/url settings. Their defaults stay `#products` and `#custom`. Do not add a purchase action.
 
-- Use a `picture` element inside the existing decorative hero-art region: `Hero_2_wide.webp` for viewports **≥ 761 px** and `Hero_2.webp` below **761 px**. Neither source is a product-card image or a product-fact assertion.
-- Treat hero media as decorative (`alt=""`, `aria-hidden="true"` on the art wrapper); the existing text fully communicates the section’s meaning. Do not use an image caption or product name in the hero.
-- Desktop/tablet art frame: retain the right-hand grid column; use an aspect ratio of **16 / 10**, `object-fit: cover`, and `object-position: 44% center`. Mobile art frame: retain the stacked layout; use **4 / 3**, `object-fit: cover`, and `object-position: 50% 45%`. These crops keep the scene legible while placing sufficient tonal separation behind the text, which remains outside the image frame.
-- Keep the paper border and cherry offset shadow as a restrained frame. Remove the current faux disc, blocks, and grid within the media area rather than layering them over the supplied art. A static, low-opacity dark gradient may be used only at the frame edge for visual integration; it must not obscure the focal subject.
-- Images must declare `width` and `height`, or an equivalent `aspect-ratio` reservation, and load without layout shift. No auto-playing media, parallax, or motion is permitted; keep existing `prefers-reduced-motion` behavior.
+### Featured products settings
 
-## 4. Featured-product media and gallery
+- eyebrow, heading, **featured collection** (`collection` picker), maximum product count (default 3, max 3), catalog-note text, and optional section anchor default `products`.
+- Collection order is the storefront order. The Theme Editor must not expose arbitrary manual text fields for a product’s name, price, description, materials, or status.
+- A card uses `product.title`, `product.description` only where approved UI currently displays description, `product.price` / `price_min` and `compare_at_price` only as actual Shopify values, and `product.media` / featured media. Product links and Add-to-cart controls are out of scope: cards remain non-transactional unless a later owner-approved phase explicitly changes that boundary.
+- For Phase 3 parity, the merchant assigns the correct three approved products in collection order: Ganja Gadget, Handmade Dab Tools, Spiky Lighter Sleeve. Verify against `CATALOG.md` before any merchant mapping or content change.
 
-Keep the active product cards in the catalog’s exact order: Ganja Gadget, Handmade Dab Tools, then Spiky Lighter Sleeve. Keep the exact existing catalog copy, prices, POC disclosure, and absence of product/checkout links.
+### About, Coming Soon, trust, custom work, newsletter, footer
 
-### Shared media frame
+- Make existing eyebrow/headline/body/CTA labels and section texts editable through text, textarea, or `richtext` settings as appropriate. Preserve defaults exactly.
+- **Coming Soon:** use repeatable blocks (`name` text) defaulting to Horror Character Products and Mummified Fairies. It is display-only; no product availability, links, or price fields.
+- **Trust strip:** three ordered blocks, each with number and text defaulting to the approved three statements. Keep three blocks in the initial template.
+- **Footer:** footer menu/link-list setting and copyright text. Text fallback keeps current anchor content if no menu is selected.
+- Newsletter stays a POC: show local validation and the existing “does not submit data” message, or visibly disable it with an equivalent POC notice. Do not use `{% form 'customer' %}` in this phase because that would create a live customer-data pathway.
 
-- Use a dark graphite media well with the existing paper hairline and cherry offset shadow. The media frame is presentational; images must carry the product information through accurate alt text.
-- Do not use `object-fit: cover` where it cuts off the product. Product media uses `object-fit: contain` on a graphite background by default. `object-position: center` is required.
-- Reserve the image area before media loads. Main product media is **3 / 4** at desktop and **4 / 5** at 760 px and below, with a minimum 220 px visual height when the layout allows. Thumbnail wells are **1 / 1**, use `object-fit: cover`, and use `object-position: center` because they are selection previews, not the sole product view.
-- Preserve the existing responsive product-grid behavior: three columns when space permits, two columns through the current intermediate breakpoint, one column at 390 px and below; no horizontal overflow. Media controls may wrap beneath the main image rather than shrink below a 44 px target.
+## 4. Product, price, and media mapping
+
+### Data precedence and safe rendering
+
+1. `CATALOG.md` governs approved product identity, facts, merchandising order, image approvals, POC restrictions, and whether Owner input is needed.
+2. The chosen Shopify collection/product objects supply live-theme runtime fields only after a future merchant configures them.
+3. If Shopify product data conflicts with `CATALOG.md`, is absent, or is ambiguous, do not guess: render the safe configured/empty state and flag the mismatch for Owner/Director review. Never alter `CATALOG.md` during conversion.
+
+Prices must use Shopify money filters (for example `| money`) rather than hard-coded dollars. Phase 3’s Ganja Gadget pricing (`$20 for 1 or $30 for 2`) requires an actual approved Shopify representation before it can be rendered dynamically—e.g., product price plus an explicitly approved quantity-break/metafield approach in a later scope. Phase 4 must not manufacture that logic. If only a single Shopify price exists, render that product’s actual price without claiming the two-unit offer; log it as a mapping gap for Owner input.
+
+When a selected collection is empty or unavailable in the Theme Editor preview, render a concise administrator-facing/design-safe empty state in the product-grid area, not invented products, stock imagery, prices, availability, or links. The public POC catalog notice must remain visible.
+
+### Product media rules
+
+- Preserve collection order: Ganja Gadget, Handmade Dab Tools, Spiky Lighter Sleeve.
+- Use Shopify image objects and `image_url`/`image_tag` with responsive `widths`, `sizes`, intrinsic dimensions, and loading choices. Do not expose file names as alt text.
+- Primary product frame: 3/4 desktop, 4/5 at <=760px, min 220px where space permits; graphite well, paper hairline, cherry offset shadow, `object-fit: contain`, centered.
+- Spiky Lighter Sleeve retains one primary image, portrait 2/3 frame, `object-fit: contain`, and no thumbnails/swatches/zoom/lightbox. Its approved descriptive fallback alt is: `A red spiky lighter sleeve fitted around a lighter on a dark forest floor.` Do not infer color/material variants.
+- Handmade Dab Tools stays intentionally imageless until a real approved image is supplied and mapped. Render the non-pictorial reserved frame with `Product image not yet available`, dashed cherry border, graphite background, and no gallery, stock art, generated imagery, or substitute `Bowlder` asset.
+- If an approved Shopify image lacks usable alt text, use a product title-based fallback only where that is non-deceptive, and flag the content gap. For known Phase 3 assets, retain the approved visual descriptions, not filenames.
 
 ### Ganja Gadget gallery
 
-Use a five-image, client-side visual gallery inside the existing Ganja Gadget card. This is image selection only; it must not represent color/variant selection, inventory, a carousel purchase flow, or a product page.
+Use `product.media` only when the mapped Shopify product actually has the five approved image assets in this exact order: collection, green/orange, lime/orange, pink/aqua, teal/blue. A merchant must not rely on filename parsing in Liquid to identify or order these assets.
 
-1. Default main image: `ganja_gadget_80s_forest_collection.webp`.
-2. Remaining image order: `ganja_gadget_80s_forest_green_orange.webp`, `ganja_gadget_80s_forest_lime_orange.webp`, `ganja_gadget_80s_forest_pink_aqua.webp`, `ganja_gadget_80s_forest_teal_blue.webp`.
-3. Show five visible thumbnail buttons below the main image. On desktop they may form one row; at small widths use a wrapping grid (minimum **44 × 44 CSS px** each) with an 8 px gap. Do not hide images in hover-only UI.
-4. Each thumbnail is a real `<button type="button">`, with an accessible name such as `Show image 2 of 5 for Ganja Gadget`; its thumbnail `<img>` has empty `alt`. Mark the active selector with `aria-current="true"` (or an equally exposed selected state) and a non-color-only treatment: paper outline plus a small visible `Current image` text for screen readers.
-5. The selected full-size image is one substantive `<img>` whose alt changes with the selection. Use these approved visual descriptions, which make no new catalog claims:
-   - image 1: `Four open Ganja Gadget items arranged on a dark textured surface.`
-   - image 2: `An open Ganja Gadget shown against a dark forest floor.`
-   - image 3: `An open Ganja Gadget shown against a dark forest floor.`
-   - image 4: `An open Ganja Gadget shown against a dark forest floor.`
-   - image 5: `An open Ganja Gadget shown against a dark forest floor.`
-6. Gallery changes occur only after button activation (click, Enter, or Space), move no focus automatically, announce the new main-image alt through the changed image/content, and do not autoplay or auto-advance. Optional left/right keyboard navigation is allowed only when focus remains on the thumbnail button and the button’s accessible state updates.
+- Default main image is media item 1. Thumbnails select a displayed image only; they are never color/variant/inventory selectors.
+- Exactly five thumbnails for the approved Phase 3 state. If media is missing or fewer than five, do not fabricate gallery items; render available substantive media safely and surface the mapping gap for review.
+- Each selector is a real `<button type="button">`, 44×44px minimum, with name `Show image N of 5 for Ganja Gadget`; thumbnail image alt is empty. The active button uses `aria-current="true"`, visible non-color-only selected styling, and `Current image` screen-reader text.
+- Update one substantive main image’s `src`/responsive source and approved alt on click, Enter, or Space. No autoplay, auto-advance, focus movement, carousel role, or variant selection. Keep the existing polite live announcement.
+- Approved main-image descriptions: image 1 `Four open Ganja Gadget items arranged on a dark textured surface.` Images 2–5 `An open Ganja Gadget shown against a dark forest floor.`
 
-### Spiky Lighter Sleeve media
+## 5. Accessibility, responsive, and visual preservation
 
-- Use `lighterSleeve_80s_forest_red.webp` as the single primary image. It is not a gallery and must not imply unapproved color availability.
-- Keep its portrait presentation in a **2 / 3** main media frame using `object-fit: contain` and `object-position: center`; this preserves the full lighter and sleeve rather than square-cropping it as Phase 2 does.
-- Use this exact alt text: `A red spiky lighter sleeve fitted around a lighter on a dark forest floor.` The visible image color is descriptive only and does not change the catalog’s `NEEDS OWNER INPUT` materials/colors field.
-- Do not create thumbnails, swatches, image zoom, lightbox, or color labels for this product until those data and behavior are approved.
+- Preserve semantic landmarks, skip link, sticky header, single H1, heading hierarchy, 44px targets, high-contrast visible focus, menu close control, Escape handling, focus trap, and focus return.
+- Keep all Phase 3 visual tokens and layouts: dark cherry/graphite/paper/gold palette, bold display type, tactile borders and shadows, product-grid collapse (3 columns where space permits, 2 at the intermediate size, 1 at <=390px), and no horizontal overflow.
+- Test 320px, 390px, 760px, 761px, 1024px, and 1440px. At every width, the logo/header must not collide, navigation remains operable, image frame reserves space, gallery selectors remain reachable, and full product media is not unintentionally cropped.
+- Keep decorative hero media and redundant logo media `alt=""`; substantive product media must have concise, accurate alt text. Use selected Shopify image alt only if it is approved/accurate; otherwise use the stated safe fallback and record the gap.
+- Preserve `prefers-reduced-motion`; no autoplay, parallax, or new motion. First visible hero and product image should not lazy-load; later gallery thumbnails/images may lazy-load.
+- Liquid output must escape editable plain-text settings, retain correct heading IDs/`aria-labelledby` wiring, and avoid duplicate IDs when section instances repeat.
 
-### Handmade Dab Tools image slot
+## 6. POC and conversion non-goals
 
-No product image file is approved or available. Retain this active card in second position and show a deliberately non-pictorial media placeholder with the visible text **`Product image not yet available`**. It must have the same reserved media dimensions as the other cards, a dashed cherry border, graphite background, and no illustration, icon, stock image, generated image, or decorative object that could be read as the product.
+This phase does not authorize a Shopify connection, storefront password change, product/collection creation or mutation, cart/checkout wiring, customer account/search implementation, real newsletter submission, analytics, apps, external scripts, favicon creation, image generation, publishing, deployment, merging, or any live-store action.
 
-The placeholder is not an image: use text in the card’s normal reading order (not `alt` text), do not provide gallery controls, and do not label the active product itself as “Coming Soon.” Replace it only after the Owner provides an approved image reference.
+Developer must not alter `CATALOG.md`, approved assets, prices, approved copy defaults, or the Phase 3 visual direction. Make no unrelated changes. Preserve static files until QA confirms the Liquid theme faithfully replaces them; do not delete historical reference material unless the Director explicitly authorizes it.
 
-## 5. Accessibility, performance, and responsive acceptance criteria
+## 7. Development handoff and QA gate
 
-1. Preserve the Phase 2 semantic landmarks, skip link, single H1, heading hierarchy, visible focus styling, sticky-header anchor offset, and all existing mobile-menu behavior (close control, Escape, focus trap, and focus return).
-2. All substantive product images have concise, accurate alt text; decorative hero art and the redundant logo image use empty alt text. No filename is exposed as alternative text.
-3. Every gallery selector has a visible, programmatic selected state, keyboard operation, 44 × 44 px minimum target, and focus indicator meeting the existing high-contrast focus style. Image selection must not cause a layout shift or unexpected focus movement.
-4. All media has explicit dimensions or an `aspect-ratio` reservation, uses responsive source selection for the hero, and avoids visual cropping that hides the product. Do not lazy-load the first hero or first visible product image; later gallery images may use `loading="lazy"`.
-5. Test at **320 px, 390 px, 760 px, 761 px, 1024 px, and 1440 px**: no horizontal overflow; no logo/menu collision; gallery controls remain reachable; full product imagery remains visible; and the existing grid collapse remains intact.
-6. Maintain WCAG 2.2 AA contrast, text resizing/reflow, `prefers-reduced-motion`, and existing newsletter/dialog behavior. The gallery does not create false commerce, submission, availability, or variant-selection behavior.
+Developer must create only the theme architecture and asset migrations described above, validate Liquid/JSON syntax, and commit implementation separately from this specification. Before implementation, Director must approve this Phase 4 specification.
 
-## 6. Non-goals and handoff boundary
-
-This spec does not authorize an implementation task. It does not alter `CATALOG.md`, create a favicon asset, associate `Bowlder_80s_forest_grad.webp` with a product, invent Dab Tools imagery, add product URLs, add checkout, merge, deploy, publish, or make any external change.
-
-Developer work requires explicit Director delegation followed by independent QA review before any merge consideration.
+QA must independently verify: valid `layout/theme.liquid` and `templates/index.json`; section/snippet render paths; editor controls/defaults; collection/product/price/media fallback behavior; no hard-coded commerce data where Shopify objects are available; correct Ganja gallery mapping and interaction; intentional Dab Tools placeholder; logo/Hero_2 rendering; all accessibility and breakpoint requirements; and absence of cart/checkout/live-store operations. Any mismatch against `CATALOG.md` or Phase 3 behavior is a failed regression until fixed and retested.
