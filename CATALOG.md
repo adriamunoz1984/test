@@ -89,3 +89,4 @@ Inclusion of a value here does not authorize implementation, storefront changes,
 | Storefront/product URL | NEEDS OWNER INPUT |
 | Status | Coming Soon |
 | Notes | Planned for sale |
+C:\Users\johnz\test\CATALOG.md
