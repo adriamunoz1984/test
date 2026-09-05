@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code | default: 'en' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="{{ page_description | default: 'Munoz Miniz 3D-printed products and custom work proof of concept.' | escape }}">
+    <title>{{ page_title }}{% unless page_title contains shop.name %} | {{ shop.name }}{% endunless %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ content_for_header }}
+  </head>
+  <body>
+    <a class="skip-link" href="#MainContent">Skip to content</a>
+    {% section 'announcement-bar' %}
+    {% section 'header' %}
+    <main id="MainContent" role="main" tabindex="-1">{{ content_for_layout }}</main>
+    {% section 'newsletter' %}
+    {% section 'footer' %}
+    <dialog class="poc-dialog" aria-labelledby="poc-dialog-title">
+      <button class="dialog-close" type="button"><span class="sr-only">Close message</span><span aria-hidden="true">&times;</span></button>
+      <h2 id="poc-dialog-title">Proof-of-concept notice</h2><p class="poc-dialog-message"></p>
+    </dialog>
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+  </body>
+</html>

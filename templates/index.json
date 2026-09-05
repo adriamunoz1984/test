@@ -1,0 +1,10 @@
+{
+  "sections": {
+    "hero": { "type": "hero", "settings": {} },
+    "featured": { "type": "featured-products", "settings": {} },
+    "trust": { "type": "trust-strip", "blocks": { "one": { "type": "item", "settings": { "number": "01", "text": "Current products" } }, "two": { "type": "item", "settings": { "number": "02", "text": "Custom work" } }, "three": { "type": "item", "settings": { "number": "03", "text": "Details confirmed before pricing" } } }, "block_order": ["one", "two", "three"], "settings": {} },
+    "about": { "type": "about-coming-soon", "blocks": { "horror": { "type": "item", "settings": { "name": "Horror Character Products" } }, "fairies": { "type": "item", "settings": { "name": "Mummified Fairies" } } }, "block_order": ["horror", "fairies"], "settings": {} },
+    "custom": { "type": "custom-work", "settings": {} }
+  },
+  "order": ["hero", "featured", "trust", "about", "custom"]
+}

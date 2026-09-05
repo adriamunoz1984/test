@@ -1,0 +1,26 @@
+{% liquid
+  assign is_dab_tools = false
+  assign is_sleeve = false
+  assign is_ganja = false
+  if product.title == 'Handmade Dab Tools'
+    assign is_dab_tools = true
+  endif
+  if product.title == 'Spiky Lighter Sleeve'
+    assign is_sleeve = true
+  endif
+  if product.title == 'Ganja Gadget'
+    assign is_ganja = true
+  endif
+  assign is_approved_ganja_gallery = false
+  if enable_approved_ganja_gallery and approved_ganja_gallery_product != blank and product.id == approved_ganja_gallery_product.id
+    assign is_approved_ganja_gallery = true
+  endif
+%}
+<article class="product-card{% if is_dab_tools %} product-card-no-image{% endif %}">
+  {% if is_dab_tools %}<div class="product-media product-media-placeholder">Product image not yet available</div>
+  {% elsif product.media.size > 0 %}{% render 'product-gallery', product: product, is_ganja: is_ganja, is_sleeve: is_sleeve, is_approved_ganja_gallery: is_approved_ganja_gallery %}
+  {% else %}<div class="product-media product-media-placeholder">Product image not yet available</div>{% endif %}
+  <h3>{{ product.title | escape }}</h3>
+  {% if product.price_varies %}<p class="price">From {{ product.price_min | money }}</p>{% else %}<p class="price">{{ product.price | money }}</p>{% endif %}
+  {% if product.description != blank %}<p class="product-description">{{ product.description | strip_html | escape }}</p>{% endif %}
+</article>
