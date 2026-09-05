@@ -1,7 +1,16 @@
 {% liquid
-  assign is_dab_tools = product.title == 'Handmade Dab Tools'
-  assign is_sleeve = product.title == 'Spiky Lighter Sleeve'
-  assign is_ganja = product.title == 'Ganja Gadget'
+  assign is_dab_tools = false
+  assign is_sleeve = false
+  assign is_ganja = false
+  if product.title == 'Handmade Dab Tools'
+    assign is_dab_tools = true
+  endif
+  if product.title == 'Spiky Lighter Sleeve'
+    assign is_sleeve = true
+  endif
+  if product.title == 'Ganja Gadget'
+    assign is_ganja = true
+  endif
   assign is_approved_ganja_gallery = false
   if enable_approved_ganja_gallery and approved_ganja_gallery_product != blank and product.id == approved_ganja_gallery_product.id
     assign is_approved_ganja_gallery = true
