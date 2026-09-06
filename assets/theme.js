@@ -16,4 +16,8 @@
       announce.textContent = `Showing ${kind} ${index + 1} of ${buttons.length}.`;
     }));
   });
+  document.querySelectorAll('[data-product-form]').forEach((form) => {
+    const select = form.querySelector('[data-variant-select]'); const price = form.closest('.product-page-details')?.querySelector('[data-product-price]');
+    select?.addEventListener('change', () => { const option = select.options[select.selectedIndex]; if (price) price.textContent = option.dataset.price || ''; });
+  });
 })();
