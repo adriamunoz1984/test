@@ -1,0 +1,35 @@
+{% assign is_ganja = false %}
+{% if product.handle == 'ganja-gadget' %}{% assign is_ganja = true %}{% endif %}
+<section class="product-page section-dark" aria-labelledby="product-title-{{ section.id }}" {{ section.shopify_attributes }}>
+  <div class="product-page-grid">
+    <div class="product-page-gallery">
+      {% if product.media.size > 0 %}
+        {% render 'product-gallery', product: product, is_ganja: is_ganja, is_sleeve: false, is_approved_ganja_gallery: true %}
+      {% else %}
+        <div class="product-media product-media-placeholder" role="status">Product media is not yet available.</div>
+      {% endif %}
+    </div>
+    <div class="product-page-details">
+      <p class="eyebrow">{{ product.vendor | default: shop.name | escape }}</p>
+      <h1 id="product-title-{{ section.id }}">{{ product.title | escape }}</h1>
+      <p class="product-page-price" data-product-price>{% if product.price_varies %}From {{ product.price_min | money }}{% else %}{{ product.selected_or_first_available_variant.price | money }}{% endif %}</p>
+      {% if product.description != blank %}<div class="product-page-description rte">{{ product.description }}</div>{% endif %}
+      {% form 'product', product, class: 'product-form', data-product-form: '' %}
+        {% unless product.has_only_default_variant %}
+          <label for="Variant-{{ section.id }}">Choose an option</label>
+          <select id="Variant-{{ section.id }}" name="id" data-variant-select>
+            {% for variant in product.variants %}
+              <option value="{{ variant.id }}"{% if variant == product.selected_or_first_available_variant %} selected{% endif %}{% unless variant.available %} disabled{% endunless %} data-price="{{ variant.price | money | escape }}">{{ variant.title | escape }} — {{ variant.price | money }}{% unless variant.available %} — Sold out{% endunless %}</option>
+            {% endfor %}
+          </select>
+        {% else %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        {% endunless %}
+        <button class="button primary" type="submit"{% unless product.selected_or_first_available_variant.available %} disabled{% endunless %}>{% if product.selected_or_first_available_variant.available %}Add to cart{% else %}Sold out{% endif %}</button>
+      {% endform %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{"name":"Main product","settings":[]}
+{% endschema %}
