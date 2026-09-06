@@ -1,5 +1,33 @@
 {% assign media_count = product.media.size %}
-{% if is_ganja and is_approved_ganja_gallery and media_count == 5 %}
-  <div class="product-gallery" data-gallery="{{ product.id }}"><div class="product-media">{% assign first_media = product.media.first %}{{ first_media.preview_image | image_url: width: 900 | image_tag: class: 'gallery-main-image', alt: 'Four open Ganja Gadget items arranged on a dark textured surface.', widths: '320,480,640,900', sizes: '(min-width: 761px) 33vw, 100vw', loading: 'eager' }}</div><div class="gallery-controls" aria-label="Ganja Gadget image gallery">{% for media in product.media limit: 5 %}{% if forloop.first %}{% assign media_alt = 'Four open Ganja Gadget items arranged on a dark textured surface.' %}{% else %}{% assign media_alt = 'An open Ganja Gadget shown against a dark forest floor.' %}{% endif %}<button type="button" class="gallery-thumb{% if forloop.first %} is-current{% endif %}"{% if forloop.first %} aria-current="true"{% endif %} aria-label="Show image {{ forloop.index }} of 5 for Ganja Gadget" data-image-src="{{ media.preview_image | image_url: width: 900 }}" data-image-alt="{{ media_alt }}">{{ media.preview_image | image_url: width: 120 | image_tag: alt: '', widths: '44,88,120', loading: 'lazy' }}{% if forloop.first %}<span class="sr-only">Current image</span>{% endif %}</button>{% endfor %}</div><p class="sr-only gallery-announcement" aria-live="polite"></p></div>
+{% if is_ganja and is_approved_ganja_gallery and media_count >= 5 %}
+  <div class="product-gallery" data-gallery="{{ product.id }}" aria-label="{{ product.title | escape }} media gallery">
+    <div class="product-media gallery-stage">
+      {% for media in product.media %}
+        {% assign panel_id = 'gallery-media-' | append: product.id | append: '-' | append: media.id %}
+        <div id="{{ panel_id }}" class="gallery-panel{% if forloop.first %} is-current{% endif %}"{% unless forloop.first %} hidden{% endunless %} data-gallery-panel="{{ media.id }}">
+          {% case media.media_type %}
+            {% when 'image' %}
+              {{ media.preview_image | image_url: width: 900 | image_tag: class: 'gallery-main-image', alt: media.alt | default: product.title, widths: '320,480,640,900', sizes: '(min-width: 761px) 33vw, 100vw', loading: 'eager' }}
+            {% when 'video', 'external_video' %}
+              {{ media | media_tag: class: 'gallery-video', controls: true, autoplay: false, loop: false, preload: 'metadata', image_size: '900x' }}
+            {% else %}
+              {{ media.preview_image | image_url: width: 900 | image_tag: class: 'gallery-main-image', alt: media.alt | default: product.title, widths: '320,480,640,900', sizes: '(min-width: 761px) 33vw, 100vw', loading: 'eager' }}
+          {% endcase %}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="gallery-controls" role="group" aria-label="{{ product.title | escape }} media">
+      {% for media in product.media %}
+        {% assign panel_id = 'gallery-media-' | append: product.id | append: '-' | append: media.id %}
+        {% if media.media_type == 'video' or media.media_type == 'external_video' %}{% assign media_kind = 'video' %}{% else %}{% assign media_kind = 'image' %}{% endif %}
+        <button type="button" class="gallery-thumb{% if forloop.first %} is-current{% endif %}"{% if forloop.first %} aria-current="true"{% endif %} aria-controls="{{ panel_id }}" aria-label="Show {{ media_kind }} {{ forloop.index }} of {{ media_count }} for {{ product.title | escape }}" data-gallery-target="{{ media.id }}" data-gallery-kind="{{ media_kind }}">
+          {{ media.preview_image | image_url: width: 160 | image_tag: alt: '', widths: '44,88,120,160', loading: 'lazy' }}
+          {% if media_kind == 'video' %}<span class="gallery-video-badge" aria-hidden="true">▶</span>{% endif %}
+          {% if forloop.first %}<span class="sr-only">Current media</span>{% endif %}
+        </button>
+      {% endfor %}
+    </div>
+    <p class="sr-only gallery-announcement" aria-live="polite" aria-atomic="true"></p>
+  </div>
 {% elsif is_sleeve %}<div class="product-media product-media-sleeve">{{ product.featured_media.preview_image | image_url: width: 900 | image_tag: alt: 'A red spiky lighter sleeve fitted around a lighter on a dark forest floor.', widths: '320,480,640,900', sizes: '(min-width: 761px) 33vw, 100vw', loading: 'eager' }}</div>
 {% else %}<div class="product-media">{{ product.featured_media.preview_image | image_url: width: 900 | image_tag: alt: product.title, widths: '320,480,640,900', sizes: '(min-width: 761px) 33vw, 100vw', loading: 'eager' }}</div>{% endif %}
